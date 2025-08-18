@@ -83,7 +83,6 @@ const submit = (e) => {
   console.log(values);
 };
 
-
 function Home(){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
