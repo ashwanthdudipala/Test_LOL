@@ -118,15 +118,14 @@ function Home(){
              <input type="text" name="lastName" id="lastName" required placeholder="Last Name"/>
             
              <input type="number" name="age" id="age" min={1} max={105} required placeholder="Age"/>
-             
              <input type="email" name="email" id="email" required placeholder="Email"/>
              <div className="gender-box">
              <h5>Gender</h5>
-             <input type="radio" name="gender" id="male" />
+             <input type="radio" name="gender" id="male" value="male"/>
              <label htmlFor="male">Male</label>
-             <input type="radio" name="gender" id="female" />
+             <input type="radio" name="gender" id="female" value="female"/>
              <label htmlFor="female">Female</label>
-             <input type="radio" name="gender" id="other" />
+             <input type="radio" name="gender" id="other" value="nonBinary"/>
              <label htmlFor="other">Other</label>
              </div>
              <input type="tel" name="phoneNum" id="phoneNum" required maxLength={10} placeholder="Mobile Number" />
