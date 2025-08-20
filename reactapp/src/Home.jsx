@@ -4,10 +4,10 @@ import './App.css'
 import axios from 'axios';
 
 //api folder
-const apiget = async ()=>{
+const apiget = async (url)=>{
     const token = localStorage.getItem("token");
     try {
-        const response = await axios.get("http://localhost:3000/api/home",{
+        const response = await axios.get(`http://localhost:3000${url}`,{
             headers:{Authorization: `Bearer ${token}`}
         })
         console.log(response.data);
@@ -17,10 +17,10 @@ const apiget = async ()=>{
     }
 }
 
-const apiPost = async (Data)=>{
+const apiPost = async (url,Data)=>{
     const token = localStorage.getItem("token");
     try {
-        const response = await axios.post("http://localhost:3000/api/home",Data,{
+        const response = await axios.post(`http://localhost:3000${url}`,Data,{
             headers:{Authorization: `Bearer ${token}`}
         })
         console.log(response);
@@ -54,28 +54,15 @@ const handleError = (error)=>{
     throw error;
 }
 
-const request = async (e)=>{
-    const token = localStorage.getItem("token");
-    try {
-        const response = await axios.get("http://localhost:3000/api/home",{
-            headers:{Authorization: `Bearer ${token}`}
-        })
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        handleError(error);
-    }
-}
-
-
 const submit = (e) => {
+    const url = '/api/home';
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
   const values = Object.fromEntries(data.entries());
 
   try {
-    const response = apiPost(values);
+    const response = apiPost(url,values);
     console.log(response);
   } catch (error) {
     
@@ -90,11 +77,12 @@ function Home(){
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await apiget();
+                const url = '/api/home';
+                const result = await apiget(url);
                 console.log(result);
                 setData(result);
             } catch (error) {
-                setError("Unauthorized");
+                setError("Server Side Issues");
             }
             finally {
                 setLoading(false);
