@@ -54,6 +54,20 @@ const handleError = (error)=>{
     throw error;
 }
 
+const request = async (e)=>{
+    const token = localStorage.getItem("token");
+    try {
+        const response = await axios.get("http://localhost:3000/api/home",{
+            headers:{Authorization: `Bearer ${token}`}
+        })
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+
 const submit = (e) => {
     const url = '/api/home';
   e.preventDefault();
@@ -82,7 +96,7 @@ function Home(){
                 console.log(result);
                 setData(result);
             } catch (error) {
-                setError("Server Side Issues");
+                setError("Server Issue");
             }
             finally {
                 setLoading(false);

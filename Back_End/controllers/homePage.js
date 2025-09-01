@@ -8,8 +8,6 @@ import supabase from '../DataBase/supabase.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
-//secret_key
-const secret_key = process.env.secret_key;
 
 const getHomePage = async(req,res)=>{
   res.status(201).json({
@@ -30,9 +28,11 @@ const postHomePage = async(req,res)=>{
         state: req.body.state,
         pinCode: parseInt(req.body.pinCode),
       }]);
-      console.log(data);
   } catch (error) {
-    console.error(error)
+    res.status(201).json({success: false,
+      message: "Update Unsuccessful",
+      data: this.error
+    })
   }
   res.status(201).json({
     success: true, message: "Update Successful", data: req.body

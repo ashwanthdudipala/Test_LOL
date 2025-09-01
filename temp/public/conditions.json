@@ -1,0 +1,19 @@
+[
+  {
+    "condition": "Diabetes",
+    "description": "eat less"
+  },
+  {
+    "condition": "Hypertension",
+    "description": "Be cool and calm"
+  },
+  {
+    "condition": "Asthma",
+    "description": "Breathe easy and avoid triggers."
+  }
+  ,
+  {
+    "condition": "ddd",
+    "description": "dddd easy and avoid triggers."
+  }
+]

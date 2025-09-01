@@ -25,7 +25,7 @@ const login = async (req,res)=>{
     const token = jwt.sign(
       {email:email},
       secret_key,
-      {expiresIn:"10m"}
+      {expiresIn:"10h"}
     );
     res.status(201).json({success : "true",token:token});
   }

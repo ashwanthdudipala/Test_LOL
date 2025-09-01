@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors'; 
 import encrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 //middleware
 const app = express();
 app.use(cors());
