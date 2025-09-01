@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './Login.jsx';
 import Home from './Home.jsx'
 import Register from './Register.jsx'
+import Dashboard from './Dashboard.jsx';
 
 
 function App() {
@@ -12,7 +12,8 @@ function App() {
       <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<Home />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />}/>
+          <Route path="/user/*" element={<Dashboard />}/>
           <Route path="*" element={<p>Page Not Found! ERR_404</p>} />
       </Routes>
     </Router>
