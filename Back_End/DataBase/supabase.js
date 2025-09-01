@@ -1,6 +1,14 @@
-import {createClient } from '@supabase/supabase-js'
-const supabaseUrl = 'https://kbfubmrbvvxjbywutwpy.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiZnVibXJidnZ4amJ5d3V0d3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyMTQxMjksImV4cCI6MjA2OTc5MDEyOX0.VK_BixjAc3XBjPa1YbN0h_xXLMnSd1WYY6Fu4zzLg0A';
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load .env in local development
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("❌ Missing Supabase environment variables. Check SUPABASE_URL and SUPABASE_ANON_KEY.");
+}
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
