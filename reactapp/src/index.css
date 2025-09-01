@@ -201,3 +201,10 @@ main{
   margin: 10px;
   font-size: smaller;
 }
+.no-conditions{
+  font-size: smaller;
+  color: grey;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

@@ -1,10 +1,10 @@
   import { useState } from 'react'
   import './App.css'
+  import {apiget} from './apiservice.js'
   import axios from "axios"
   function Login(){
       const [loading, setLoading] = useState(false);
       const [login,setlogin] = useState("submit"); // 0:Default 1:Success 2:Failure
-  
   const submit = async (e)=>{
       e.preventDefault();
       setLoading(true);
@@ -19,21 +19,26 @@
           console.log(response.data);
           localStorage.setItem("token",response.data.token);
           setlogin("Redirecting...");
-          window.location.href = '/about';
         }
         else{
-          console.log(response.data);
+          console.log(responseg.data.data.length);
           setlogin(`${response.data.msg}`);
         }
-        setTimeout(() => {
+        setTimeout(async () => {
+          const responseg = await apiget('/api/details');
+          if(responseg.data.length==0){
+            window.location.href = '/about';
+          }
+          else{
+            console.log(responseg.data.length);
+            window.location.href = '/user/dashboard';
+          }
             setLoading(false);
         }, 1000);
       } catch (err) {
         console.log('Login failed:', err);
       } 
     }
-  
-
     return (
       <>
         <form onSubmit={submit} style={{ maxWidth: "300px", margin: "auto" }}>

@@ -4,11 +4,18 @@ import './Dialog.css';
 import React, {useRef} from "react";
 
 export default function MedicCard(props){
-  let array = props.cardProps.map((properties,index) => {
-    return (
-      <Cardmedic key={index} heading={properties.medication} description={properties.dosage} refresh={props.refresh}/>
-      )
-    })
+  const content = props.cardProps.length === 0 ? (
+        <p className="no-conditions">Click + to add Medications</p>
+      ) : (
+        props.cardProps.map((properties, index) => (
+          <Cardmedic
+            key={index}
+            heading={properties.condition}
+            description={properties.description}
+            refresh={props.refresh}
+          />
+        ))
+      );
 const submitEvent = async (e)=>{
   e.preventDefault();
   const medication = document.getElementById("medication").value;
@@ -53,7 +60,7 @@ const dialogRef = useRef();
         </div>
         <button className="add" onClick={() => dialogRef.current.showModal()}>+</button>
       </header>
-      {array}
+      {content}
         <dialog ref={dialogRef} className="dialog-modal" onClose={() => {props.refresh();}}>
           <div className="dialogboxMed">
             <h2>Add Medication</h2>
