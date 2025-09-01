@@ -14,7 +14,7 @@ function App() {
           <Route path="/about" element={<Home />} />
           <Route path="/register" element={<Register />}/>
           <Route path="/user/*" element={<Dashboard />}/>
-          <Route path="*" element={<p>Page Not Found! ERR_404</p>} />
+          <Route path="*" element={<Login />} />
       </Routes>
     </Router>
   );
