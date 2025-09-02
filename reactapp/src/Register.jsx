@@ -15,7 +15,7 @@ function Register(){
       lastName:  document.querySelector('.lname').value
     }
      try {
-      const response = await axios.post("http://localhost:3000/api/register", formData);
+      const response = await axios.post("https://test-lol-evk6.onrender.com/api/register", formData);
       if(response.data.success == 'true'){
         setregister("Registration success!");
         alert("Registration Success!! Please Login.");
