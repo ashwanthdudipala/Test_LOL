@@ -30,7 +30,7 @@ function Login() {
         const details = await apiget('/api/details');
         console.log("User details:", details);
 
-        if (!details || details.length === 0) {
+        if (!details || !details.data || details.data.length === 0) {
           window.location.href = '/about';
         } else {
           window.location.href = '/user/dashboard';
