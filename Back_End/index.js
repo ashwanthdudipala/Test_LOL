@@ -35,10 +35,6 @@ import supabase from './DataBase/supabase.js';
 export const secret_key = process.env.JWT_SECRET;
 
 if (!secret_key) {
-  console.error("❌ JWT_SECRET is not defined. Please set it in your .env or Render environment variables.");
-  process.exit(1);
-}
-if (!process.env.JWT_SECRET) {
   console.error("❌ JWT_SECRET is missing. Please set it in .env or Render environment variables.");
   process.exit(1);
 }

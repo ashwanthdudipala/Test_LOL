@@ -2,21 +2,31 @@ import {apiget} from '../apiservice';
 import { useEffect, useState } from 'react';
 export default function PersonalDetails(){
     const url = '/api/details';
-    const [details,setDetails] = useState([]);
-    const fetchdata = async()=>{
-        const data = await apiget(url);
-        setDetails(data.data[0]);
+   const [details, setDetails] = useState(null);
+
+  const fetchdata = async () => {
+    try {
+      const res = await apiget(url);
+      // Handle Supabase response shape: { data: [...], error: ... }
+      if (res && res.data && res.data.length > 0) {
+        setDetails(res.data[0]);   // take the first row
+      } else {
+        setDetails(null);
+      }
+    } catch (err) {
+      console.error("❌ Failed to fetch personal details:", err);
+      setDetails(null);
     }
-    useEffect(()=>{
-        fetchdata();
-    },[]);
-    return(
-        <>
-        <p className="personal-details">Personal Details</p>
-        <div className="subflex">
-            
-            <div className="subflex1">
-                <div className="detail-row">
+  };
+  useEffect(() => {
+    fetchdata();
+  }, []);
+  return (
+    <>
+      <p className="personal-details">Personal Details</p>
+      <div className="subflex">
+        <div className="subflex1">
+          <div className="detail-row">
                     <span className="label">First Name</span>
                     <span className="value">{details.firstName}</span>
                 </div>
